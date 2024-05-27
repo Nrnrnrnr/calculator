@@ -30,6 +30,9 @@
   <button onclick="clearDisplay()">C</button>
   <button onclick="calculateSquareRoot()">√</button>
   <button onclick="calculateFactorial()">!</button>
+  <button onclick="calculateSin()">sin</button>
+  <button onclick="calculateCos()">cos</button>
+  <button onclick="calculateTan()">tan</button>
 
   <script>
     function appendValue(value) {
@@ -71,6 +74,24 @@
       } else {
         document.getElementById('display').value = 'Ошибка';
       }
+    }
+
+    function calculateSin() {
+      let angle = parseFloat(document.getElementById('display').value);
+      let result = Math.sin(angle * (Math.PI / 180)); // Перевод в радианы
+      document.getElementById('display').value = result;
+    }
+
+    function calculateCos() {
+      let angle = parseFloat(document.getElementById('display').value);
+      let result = Math.cos(angle * (Math.PI / 180)); // Перевод в радианы
+      document.getElementById('display').value = result;
+    }
+
+    function calculateTan() {
+      let angle = parseFloat(document.getElementById('display').value);
+      let result = Math.tan(angle * (Math.PI / 180)); // Перевод в радианы
+      document.getElementById('display').value = result;
     }
   </script>
 </body>
