@@ -1,0 +1,91 @@
+import math
+
+memory = None
+
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    if y == 0:
+        return "Ошибка: деление на ноль"
+    else:
+        return x / y
+
+def power(x, y):
+    return x ** y
+
+def square_root(x):
+    return math.sqrt(x)
+
+def clear_memory():
+    global memory
+    memory = None
+    return "Память очищена"
+
+def save_to_memory(result):
+    global memory
+    memory = result
+    return f"Результат сохранен в память: {memory}"
+
+def recall_memory():
+    global memory
+    if memory is None:
+        return "Память пуста"
+    else:
+        return f"Значение в памяти: {memory}"
+
+print("Добро пожаловать в сложный калькулятор!")
+print("Поддерживаемые операции:")
+print("1. Сложение (+)")
+print("2. Вычитание (-)")
+print("3. Умножение (*)")
+print("4. Деление (/)")
+print("5. Возведение в степень (x^y)")
+print("6. Квадратный корень (√x)")
+print("7. Сохранить результат в память")
+print("8. Очистить память")
+print("9. Вывести значение из памяти")
+
+while True:
+    choice = input("Выберите операцию (или 'q' для выхода): ")
+    
+    if choice == 'q':
+        break
+    
+    num1 = float(input("Введите первое число: "))
+    
+    if choice in ['√', '8', '9']:
+        result = None
+        if choice == '√':
+            result = square_root(num1)
+        elif choice == '8':
+            result = clear_memory()
+        elif choice == '9':
+            result = recall_memory()
+        
+        print(result)
+        
+    else:
+        num2 = float(input("Введите второе число: "))
+        result = None
+        
+        if choice == '+':
+            result = add(num1, num2)
+        elif choice == '-':
+            result = subtract(num1, num2)
+        elif choice == '*':
+            result = multiply(num1, num2)
+        elif choice == '/':
+            result = divide(num1, num2)
+        elif choice == '^':
+            result = power(num1, num2)
+        elif choice == '7':
+            result = save_to_memory(num1)
+        
+        print(f"Результат: {result}")
