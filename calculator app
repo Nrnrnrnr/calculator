@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Калькулятор</title>
+</head>
+<body>
+  <input type="text" id="display" readonly>
+  <br>
+  <button onclick="appendValue('1')">1</button>
+  <button onclick="appendValue('2')">2</button>
+  <button onclick="appendValue('3')">3</button>
+  <button onclick="appendValue('+')">+</button>
+  <br>
+  <button onclick="appendValue('4')">4</button>
+  <button onclick="appendValue('5')">5</button>
+  <button onclick="appendValue('6')">6</button>
+  <button onclick="appendValue('-')">-</button>
+  <br>
+  <button onclick="appendValue('7')">7</button>
+  <button onclick="appendValue('8')">8</button>
+  <button onclick="appendValue('9')">9</button>
+  <button onclick="appendValue('*')">*</button>
+  <br>
+  <button onclick="appendValue('0')">0</button>
+  <button onclick="appendValue('.')">.</button>
+  <button onclick="appendValue('**')">^</button>
+  <button onclick="appendValue('/')">/</button>
+  <br>
+  <button onclick="calculate()">=</button>
+  <button onclick="clearDisplay()">C</button>
+  <button onclick="calculateSquareRoot()">√</button>
+  <button onclick="calculateFactorial()">!</button>
+
+  <script>
+    function appendValue(value) {
+      document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+      let expression = document.getElementById('display').value;
+      try {
+        let result = eval(expression);
+        document.getElementById('display').value = result;
+      } catch (error) {
+        document.getElementById('display').value = 'Ошибка';
+      }
+    }
+
+    function calculateSquareRoot() {
+      let number = parseFloat(document.getElementById('display').value);
+      if (number >= 0) {
+        let result = Math.sqrt(number);
+        document.getElementById('display').value = result;
+      } else {
+        document.getElementById('display').value = 'Ошибка';
+      }
+    }
+
+    function calculateFactorial() {
+      let number = parseInt(document.getElementById('display').value);
+      if (number >= 0) {
+        let result = 1;
+        for (let i = 1; i <= number; i++) {
+          result *= i;
+        }
+        document.getElementById('display').value = result;
+      } else {
+        document.getElementById('display').value = 'Ошибка';
+      }
+    }
+  </script>
+</body>
+</html>
