@@ -1,91 +1,77 @@
-import math
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Калькулятор</title>
+</head>
+<body>
+  <input type="text" id="display" readonly>
+  <br>
+  <button onclick="appendValue('1')">1</button>
+  <button onclick="appendValue('2')">2</button>
+  <button onclick="appendValue('3')">3</button>
+  <button onclick="appendValue('+')">+</button>
+  <br>
+  <button onclick="appendValue('4')">4</button>
+  <button onclick="appendValue('5')">5</button>
+  <button onclick="appendValue('6')">6</button>
+  <button onclick="appendValue('-')">-</button>
+  <br>
+  <button onclick="appendValue('7')">7</button>
+  <button onclick="appendValue('8')">8</button>
+  <button onclick="appendValue('9')">9</button>
+  <button onclick="appendValue('*')">*</button>
+  <br>
+  <button onclick="appendValue('0')">0</button>
+  <button onclick="appendValue('.')">.</button>
+  <button onclick="appendValue('**')">^</button>
+  <button onclick="appendValue('/')">/</button>
+  <br>
+  <button onclick="calculate()">=</button>
+  <button onclick="clearDisplay()">C</button>
+  <button onclick="calculateSquareRoot()">√</button>
+  <button onclick="calculateFactorial()">!</button>
 
-memory = None
+  <script>
+    function appendValue(value) {
+      document.getElementById('display').value += value;
+    }
 
-def add(x, y):
-    return x + y
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
 
-def subtract(x, y):
-    return x - y
+    function calculate() {
+      let expression = document.getElementById('display').value;
+      try {
+        let result = eval(expression);
+        document.getElementById('display').value = result;
+      } catch (error) {
+        document.getElementById('display').value = 'Ошибка';
+      }
+    }
 
-def multiply(x, y):
-    return x * y
+    function calculateSquareRoot() {
+      let number = parseFloat(document.getElementById('display').value);
+      if (number >= 0) {
+        let result = Math.sqrt(number);
+        document.getElementById('display').value = result;
+      } else {
+        document.getElementById('display').value = 'Ошибка';
+      }
+    }
 
-def divide(x, y):
-    if y == 0:
-        return "Ошибка: деление на ноль"
-    else:
-        return x / y
-
-def power(x, y):
-    return x ** y
-
-def square_root(x):
-    return math.sqrt(x)
-
-def clear_memory():
-    global memory
-    memory = None
-    return "Память очищена"
-
-def save_to_memory(result):
-    global memory
-    memory = result
-    return f"Результат сохранен в память: {memory}"
-
-def recall_memory():
-    global memory
-    if memory is None:
-        return "Память пуста"
-    else:
-        return f"Значение в памяти: {memory}"
-
-print("Добро пожаловать в сложный калькулятор!")
-print("Поддерживаемые операции:")
-print("1. Сложение (+)")
-print("2. Вычитание (-)")
-print("3. Умножение (*)")
-print("4. Деление (/)")
-print("5. Возведение в степень (x^y)")
-print("6. Квадратный корень (√x)")
-print("7. Сохранить результат в память")
-print("8. Очистить память")
-print("9. Вывести значение из памяти")
-
-while True:
-    choice = input("Выберите операцию (или 'q' для выхода): ")
-    
-    if choice == 'q':
-        break
-    
-    num1 = float(input("Введите первое число: "))
-    
-    if choice in ['√', '8', '9']:
-        result = None
-        if choice == '√':
-            result = square_root(num1)
-        elif choice == '8':
-            result = clear_memory()
-        elif choice == '9':
-            result = recall_memory()
-        
-        print(result)
-        
-    else:
-        num2 = float(input("Введите второе число: "))
-        result = None
-        
-        if choice == '+':
-            result = add(num1, num2)
-        elif choice == '-':
-            result = subtract(num1, num2)
-        elif choice == '*':
-            result = multiply(num1, num2)
-        elif choice == '/':
-            result = divide(num1, num2)
-        elif choice == '^':
-            result = power(num1, num2)
-        elif choice == '7':
-            result = save_to_memory(num1)
-        
-        print(f"Результат: {result}")
+    function calculateFactorial() {
+      let number = parseInt(document.getElementById('display').value);
+      if (number >= 0) {
+        let result = 1;
+        for (let i = 1; i <= number; i++) {
+          result *= i;
+        }
+        document.getElementById('display').value = result;
+      } else {
+        document.getElementById('display').value = 'Ошибка';
+      }
+    }
+  </script>
+</body>
+</html>
